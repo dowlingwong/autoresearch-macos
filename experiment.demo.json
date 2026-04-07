@@ -1,0 +1,9 @@
+{
+  "objective": "Try one scoped improvement to train.py aimed at reducing val_bpb while keeping the code simple.",
+  "description": "Inspect the current optimizer and architecture settings, then apply one small experimental change in train.py only.",
+  "train_command": "uv run train.py > run.log 2>&1",
+  "timeout_seconds": 600,
+  "log_path": "run.log",
+  "results_tsv": "results.tsv",
+  "syntax_check_command": "python3 -m py_compile train.py"
+}

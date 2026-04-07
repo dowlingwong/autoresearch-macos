@@ -1,0 +1,11 @@
+{
+  "root": "/Users/wongdowling/Documents/autoresearch_harness/nodes/autoresearch-macos",
+  "branch": "autoresearch/notebook-apr08-0003",
+  "baseline_commit": "537c6e6",
+  "baseline_bpb": 0.999,
+  "best_commit": "4f7dfb7",
+  "best_bpb": 0.998,
+  "pending_experiment": null,
+  "last_decision": "discard",
+  "updated_at": "2026-04-07T22:06:36Z"
+}
