@@ -61,8 +61,36 @@ The `program.md` file is essentially a super lightweight "skill".
 prepare.py      — constants, data prep + runtime utilities (do not modify)
 train.py        — model, optimizer, training loop (agent modifies this)
 program.md      — agent instructions
+memory/         — synthesized project memory maintained over time
 pyproject.toml  — dependencies
 ```
+
+## Manager/worker control plane
+
+This repo now also has a project-specific manager/worker control plane living in the sibling [`harness/claw-code`](/Users/wongdowling/Documents/autoresearch_harness/harness/claw-code) workspace.
+
+Useful project files in this repo:
+
+- [`program.md`](/Users/wongdowling/Documents/autoresearch_harness/nodes/autoresearch-macos/program.md) — the baseline autonomous research spec
+- [`results.tsv`](/Users/wongdowling/Documents/autoresearch_harness/nodes/autoresearch-macos/results.tsv) — exact experiment ledger
+- [`.autoresearch_state.json`](/Users/wongdowling/Documents/autoresearch_harness/nodes/autoresearch-macos/.autoresearch_state.json) — current control-plane state
+- [`experiment_memory.jsonl`](/Users/wongdowling/Documents/autoresearch_harness/nodes/autoresearch-macos/experiment_memory.jsonl) — append-only event memory
+- [`memory/MEMORY.md`](/Users/wongdowling/Documents/autoresearch_harness/nodes/autoresearch-macos/memory/MEMORY.md) — synthesized topic memory index
+
+Useful supporting docs:
+
+- [`AGENT_SYSTEM.md`](/Users/wongdowling/Documents/autoresearch_harness/nodes/autoresearch-macos/AGENT_SYSTEM.md)
+- [`HIERARCHY.md`](/Users/wongdowling/Documents/autoresearch_harness/nodes/autoresearch-macos/HIERARCHY.md)
+- [`IMPLEMENTATION_PROGRESS.md`](/Users/wongdowling/Documents/autoresearch_harness/nodes/autoresearch-macos/IMPLEMENTATION_PROGRESS.md)
+- [`SMOKE_TEST.md`](/Users/wongdowling/Documents/autoresearch_harness/nodes/autoresearch-macos/SMOKE_TEST.md)
+
+The current memory design is intentionally hybrid:
+
+- exact operational records for automation
+- append-only event memory for auditing
+- small synthesized markdown memory for long-horizon strategy
+
+Longer term, the expected direction is a structured store such as SQLite beside the maintained markdown memory layer.
 
 ## Design choices
 

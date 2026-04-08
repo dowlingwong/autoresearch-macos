@@ -5,6 +5,7 @@ Use these commands from [`/Users/wongdowling/Documents/autoresearch_harness/harn
 There are two valid smoke-test modes:
 
 - deterministic control-plane smoke test
+- deterministic memory smoke test
 - live end-to-end training smoke test
 
 The deterministic path is the recommended first check because it validates the manager/worker control flow quickly without waiting for a full train run.
@@ -27,6 +28,23 @@ Important:
 
 - this notebook uses a synthetic `run.log` writer instead of a real training run
 - it is a control-plane validation, not a benchmark
+
+## Recommended memory smoke test
+
+Open [`autoresearch_memory_smoke_test.ipynb`](/Users/wongdowling/Documents/autoresearch_harness/harness/claw-code/notebooks/autoresearch_memory_smoke_test.ipynb) from [`harness/claw-code`](/Users/wongdowling/Documents/autoresearch_harness/harness/claw-code).
+
+What it validates:
+
+- the `memory/` directory exists
+- `memory/MEMORY.md` links the expected topic files
+- each topic file contains valid frontmatter
+- `results.tsv` still exists as the exact ledger
+- `experiment_memory.jsonl` still exists as the append-only event log
+
+Important:
+
+- this notebook validates the memory layout, not experiment quality
+- it is meant to confirm the current hybrid memory design before adding SQLite or richer retrieval
 
 ## 1. Verify project setup
 
@@ -119,3 +137,4 @@ The local agent side is only "circle-ready" after a few real runs show:
 - crash runs are logged as `crash`
 - repeated loop iterations leave the repo and state files consistent
 - the real `uv run train.py` path behaves well across several consecutive iterations, not just the synthetic smoke path
+- the synthesized topic memory stays coherent and useful as exact run history grows

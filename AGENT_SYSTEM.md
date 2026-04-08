@@ -43,6 +43,7 @@ The project root now acts as a stable handoff point between the manager and the 
 - `results.tsv`: durable experiment ledger
 - `.autoresearch_state.json`: current branch, best result, and pending candidate state
 - `experiment_memory.jsonl`: append-only event log for baseline, candidate, keep, discard, and loop events
+- `memory/`: synthesized topic memory for current strategy, failed ideas, promising ideas, and external references
 
 ## Current control-plane commands
 
@@ -73,6 +74,8 @@ The notebook path is intentionally cheaper and faster:
 
 This is useful for validating the manager/worker control plane before spending time on real training runs.
 
+There is now a separate memory smoke notebook in [`harness/claw-code/notebooks/autoresearch_memory_smoke_test.ipynb`](/Users/wongdowling/Documents/autoresearch_harness/harness/claw-code/notebooks/autoresearch_memory_smoke_test.ipynb) that validates the synthesized memory layer.
+
 ## Future architecture
 
 Later phases should add:
@@ -99,3 +102,15 @@ That adapter now can:
 - report machine-readable state back to the manager
 
 The main unresolved gap is no longer control-plane wiring. It is proving that repeated real runs keep git state, `results.tsv`, and long-horizon experiment quality stable over time.
+
+The current memory strategy is:
+
+- short-term exact records: `results.tsv`
+- append-only operational history: `experiment_memory.jsonl`
+- synthesized project memory: `memory/*.md`
+
+The planned long-term enhancement is:
+
+- SQLite or another structured store for exact querying across many runs and lanes
+- maintained markdown memory/wiki for long-horizon synthesis
+- selective retrieval over both layers when needed

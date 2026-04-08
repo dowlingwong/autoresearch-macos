@@ -20,8 +20,10 @@ We are in the first real control-plane phase:
 - automatic keep/discard git actions exist
 - loop controller with retry rules exists
 - experiment memory exists via `experiment_memory.jsonl`
+- synthesized memory directory exists via `memory/`
 - branch isolation command exists via `autoresearch isolate`
 - deterministic control-plane smoke notebook exists
+- memory smoke notebook exists
 - notebook smoke flow now starts fresh branches from `master`
 - notebook smoke flow now requires a successful `train.py` mutation before a run can complete
 - edit-required agent tasks now reject wrong-file or failed edits instead of silently succeeding
@@ -30,6 +32,7 @@ We are in the first real control-plane phase:
 
 - live real-hardware proof that repeated runs keep `results.tsv` and git state correct
 - stronger memory summarization over the raw JSONL event log
+- integration between synthesized markdown memory and future structured memory
 - better loop policies for retry, near-miss ideas, and crash clustering
 - better prompts and fallback behavior for local models that still drift on bounded edit tasks
 
@@ -37,7 +40,7 @@ We are in the first real control-plane phase:
 
 1. prove keep/discard behavior with a few live end-to-end runs on the real repo
 2. add worktree isolation for concurrent lanes
-3. add richer project memory for experiment history and promising ideas
+3. add structured memory storage, likely SQLite, beside the markdown memory layer
 4. add multi-worker scheduling
 5. add k8s environment orchestration
 6. add lane-level eventing and monitoring
